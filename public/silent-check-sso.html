@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Silent Check SSO</title>
+  </head>
+  <body>
+    <script>
+      // Keycloak expects this file to exist at the silent check URI for iframe-based SSO checks.
+      parent.postMessage({ message: 'loaded' }, window.location.origin);
+    </script>
+  </body>
+</html>
