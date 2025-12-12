@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const backendAuthBase = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
-const keycloakBase = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8081';
+const backendAuthBase = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8998';
+const keycloakBase = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8080';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
@@ -28,8 +28,8 @@ const LoginModal = ({ isOpen, onClose }) => {
   };
 
   const handleKeycloakRegister = () => {
-    // Wire to Keycloak registration/SSO: `${keycloakBase}/realms/<realm>/protocol/openid-connect/auth`
-    console.info('Redirecting to Keycloak SSO registration URL:', `${keycloakBase}/realms/<realm>/protocol/openid-connect/auth`);
+    // Wire to Keycloak registration/SSO: `${keycloakBase}/realms/service/protocol/openid-connect/auth`
+    console.info('Redirecting to Keycloak SSO registration URL:', `${keycloakBase}/realms/service/protocol/openid-connect/auth`);
   };
 
   if (!isOpen) return null;
@@ -87,7 +87,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             Continue with Keycloak
           </button>
           <div className="sso-hint">
-            Current SSO endpoint target: {`${keycloakBase}/realms/<realm>/protocol/openid-connect/auth`}
+            Current SSO endpoint target: {`${keycloakBase}/realms/service/protocol/openid-connect/auth`}
           </div>
         </div>
         <div className="backend-hint">
