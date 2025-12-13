@@ -6,7 +6,7 @@ React + TypeScript storefront with Keycloak SSO (OIDC Authorization Code + PKCE)
 - Frontend: `http://localhost:5173`
 - Backend (Spring Boot API): `http://localhost:8998`
 - Keycloak: `http://localhost:8080`
-  - Realm: `mini-mart`
+  - Realm: `service`
   - Public client (PKCE): `mini-mart-fe`
   - Resource server client: `mini-mart-api`
 
@@ -16,7 +16,7 @@ Create `.env.local` with the endpoints that match your local services:
 ```bash
 VITE_BACKEND_URL=http://localhost:8998
 VITE_KEYCLOAK_URL=http://localhost:8080
-VITE_KEYCLOAK_REALM=mini-mart
+VITE_KEYCLOAK_REALM=service
 VITE_KEYCLOAK_CLIENT_ID=mini-mart-fe
 ```
 
