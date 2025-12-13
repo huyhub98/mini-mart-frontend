@@ -1,7 +1,7 @@
 import React from 'react';
 import ssoIcon from '../assets/sso-icon.svg';
 
-const Header = () => {
+const Header = ({ onLogin }) => {
   return (
     <header className="topbar">
       <div className="brand">
@@ -25,7 +25,7 @@ const Header = () => {
           <span>Cart</span>
           <span className="badge">0</span>
         </button>
-        <button className="login" aria-label="Login with SSO">
+        <button className="login" aria-label="Login with SSO" onClick={onLogin}>
           <img src={ssoIcon} alt="SSO" />
           <span>Login</span>
         </button>
