@@ -7,7 +7,7 @@ interface LoginModalProps {
 
 const backendAuthBase = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8998';
 const keycloakBase = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8080';
-const realm = import.meta.env.VITE_KEYCLOAK_REALM || 'mini-mart';
+const realm = import.meta.env.VITE_KEYCLOAK_REALM || 'service';
 
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
