@@ -72,6 +72,7 @@ const AccountPage: React.FC<{ profile: ApiProfile | null; apiError: string | nul
         Refresh profile
       </button>
     </div>
+    <p className="muted">This page calls the backend to load your user information after logging in.</p>
     {profile && <pre className="api-output">{JSON.stringify(profile, null, 2)}</pre>}
     {apiError && <div className="error">{apiError}</div>}
   </div>
@@ -101,6 +102,7 @@ const App: React.FC = () => {
       return;
     }
     try {
+      // TODO: Replace '/api/me' with the backend URL that returns the logged-in user's profile
       const response = await api.get('/api/me');
       setProfile(response.data);
       setApiError(null);
@@ -115,8 +117,9 @@ const App: React.FC = () => {
       void fetchProfile();
     } else {
       setProfile(null);
+      setApiError(null);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, location.pathname]);
 
   const isAdmin = roles.includes('admin');
 
