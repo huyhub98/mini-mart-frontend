@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type { KeycloakTokenParsed } from 'keycloak-js';
 import keycloak from './keycloak';
 import {
@@ -10,6 +10,7 @@ import {
   logout,
   refreshTokenIfNeeded,
 } from './authService';
+import { syncUserWithBackend } from './userSync';
 
 export interface AuthContextValue {
   isAuthenticated: boolean;
@@ -28,6 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<KeycloakTokenParsed | null>(null);
   const [roles, setRoles] = useState<string[]>([]);
+  const lastSyncedUser = useRef<string | null>(null);
 
   useEffect(() => {
     const load = async () => {
@@ -40,6 +42,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     void load();
     return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    const pushUserToBackend = async () => {
+      if (!isAuthenticated || !user?.sub) return;
+      if (lastSyncedUser.current === user.sub) return;
+
+      try {
+        await syncUserWithBackend(user);
+        lastSyncedUser.current = user.sub;
+      } catch (error) {
+        console.error('Failed to sync Keycloak registration to backend', error);
+      }
+    };
+
+    void pushUserToBackend();
+  }, [isAuthenticated, user]);
 
   const updateState = () => {
     setIsAuthenticated(!!keycloak.authenticated);
