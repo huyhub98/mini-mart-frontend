@@ -23,7 +23,7 @@ const products = [
   },
 ];
 
-const ProductGrid = () => (
+const ProductGridLegacy = () => (
   <section className="products">
     <div className="products-header">
       <div className="tab active">New</div>

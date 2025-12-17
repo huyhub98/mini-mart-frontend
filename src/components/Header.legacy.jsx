@@ -1,7 +1,7 @@
 import React from 'react';
 import ssoIcon from '../assets/sso-icon.svg';
 
-const Header = ({ onLogin }) => {
+const HeaderLegacy = ({ onLogin }) => {
   return (
     <header className="topbar">
       <div className="brand">

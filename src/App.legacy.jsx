@@ -6,7 +6,7 @@ import ProductGrid from './components/ProductGrid.jsx';
 import LoginModal from './components/LoginModal.jsx';
 import './App.css';
 
-const App = () => {
+const AppLegacy = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (

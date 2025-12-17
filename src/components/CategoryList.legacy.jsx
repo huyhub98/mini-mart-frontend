@@ -10,7 +10,7 @@ const categories = [
   'Beauty',
 ];
 
-const CategoryList = () => (
+const CategoryListLegacy = () => (
   <ul className="category-list">
     {categories.map((category) => (
       <li key={category}>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const backendAuthBase = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8998';
 const keycloakBase = import.meta.env.VITE_KEYCLOAK_URL || 'http://localhost:8080';
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModalLegacy = ({ isOpen, onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
